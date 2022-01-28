@@ -110,3 +110,4 @@ dist
 .tern-port
 DB/createTable.sql
 DB/createTable.sql
+*.pyc
