@@ -12,6 +12,8 @@ headers={
     "Authorization" : "Bearer " + tokens["access_token"]
 }
 
+# 6시간 만료시간 -> 리프레시 토큰으로 갱신
+
 data={
     "template_object": json.dumps({
     	"object_type": "text",
