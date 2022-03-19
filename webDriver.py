@@ -2,8 +2,8 @@ import os
 import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from config import conn
-from SQL import sample
+# from config import conn
+# from SQL import sample
 
 #####한글깨짐 방지######
 os.environ["NLS_LANG"] = ".AL32UTF8"
@@ -11,7 +11,7 @@ os.environ["NLS_LANG"] = ".AL32UTF8"
 URL_BASE = "https://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008#"
 URL_PARAM = ""
 
-db = conn.cursor()
+# db = conn.cursor()
 
 
 def scrape(URL):
