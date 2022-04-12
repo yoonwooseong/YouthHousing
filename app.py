@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from crawling import crawling
+from crawling import crawling, checkUpdateNotice
 from webDriver import saveData
 from mail import *
 
@@ -16,8 +16,9 @@ def scrape():
     param = {}
     result = crawling(1, param)
 
+    checkUpdateNotice(result)
     print(result)
-    
+
     checkEmail()
     return render_template("end.html")
 

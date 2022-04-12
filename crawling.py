@@ -1,6 +1,8 @@
+from pickle import FALSE
 import requests
 from bs4 import BeautifulSoup
 from config import URL_BASE
+
 
 def readHtml(totalPage, param):
     totalNotice = {}
@@ -14,7 +16,7 @@ def readHtml(totalPage, param):
         noticeTbody = noticeTable.find("tbody")
         noticeList = noticeTbody.find_all("tr")
 
-        # 공고번호, 민간 or 공공, 공고명, 공고일, 신청일, 사업자명 
+        # 공고번호, 민간 or 공공, 공고명, 공고일, 신청일, 사업자명
         for notice in noticeList:
             infoList = notice.find_all("td")
 
@@ -26,8 +28,9 @@ def readHtml(totalPage, param):
             entrepreneur = infoList[5].get_text()
 
             # 한 공고 정보
-            resultData = {"index": index, "type": type, "title": title, "postDate": postDate, "applyDate": applyDate, "entrepreneur": entrepreneur}
-            
+            resultData = {"index": index, "type": type, "title": title,
+                          "postDate": postDate, "applyDate": applyDate, "entrepreneur": entrepreneur}
+
             # 같은 공고 저장 방지
             if resultData not in oneNotice:
                 oneNotice.append(resultData)
@@ -37,6 +40,17 @@ def readHtml(totalPage, param):
 
     return totalNotice
 
+
 def crawling(totalPage, param):
     result = readHtml(totalPage, param)
     return result
+
+# DB에서 이전 공고와 비교
+
+
+def checkUpdateNotice(newNotice):
+    prevNotice = []
+    if newNotice != prevNotice:
+        return newNotice
+    else:
+        return False
