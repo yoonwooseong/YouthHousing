@@ -45,12 +45,21 @@ def crawling(totalPage, param):
     result = readHtml(totalPage, param)
     return result
 
-# DB에서 이전 공고와 비교
 
 
-def checkUpdateNotice(newNotice):
-    prevNotice = []
-    if newNotice != prevNotice:
-        return newNotice
-    else:
-        return False
+# 가장 최근 공고 비교 후 다르면 같을때까지 비교
+# 다른 공고들 메일에 추가
+def checkUpdateNotice(readNotice):
+    newNotice = []
+    prevNotice = [''] # load DB 
+
+    for notice in readNotice:
+        if notice == prevNotice[0]:
+            return newNotice
+        else:
+            newNotice.append(notice)
+
+    return newNotice
+
+
+
