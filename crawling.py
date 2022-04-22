@@ -1,3 +1,4 @@
+from operator import truediv
 from pickle import FALSE
 import requests
 from bs4 import BeautifulSoup
@@ -46,20 +47,24 @@ def crawling(totalPage, param):
     return result
 
 
+def isSameNotice(notice, prevNotice):
+    if notice['title'] == prevNotice['title'] and notice['type'] == prevNotice['type'] and notice['type'] == prevNotice['type']:
+        return True
+    else:
+        return False
+
 
 # 가장 최근 공고 비교 후 다르면 같을때까지 비교
 # 다른 공고들 메일에 추가
 def checkUpdateNotice(readNotice):
     newNotice = []
-    prevNotice = [''] # load DB 
+    prevNotice = ['']  # load DB
+    noticeList = readNotice['notice']
 
-    for notice in readNotice:
-        if notice == prevNotice[0]:
+    for notice in noticeList:
+        if isSameNotice(notice, prevNotice[0]):
             return newNotice
         else:
             newNotice.append(notice)
 
     return newNotice
-
-
-
