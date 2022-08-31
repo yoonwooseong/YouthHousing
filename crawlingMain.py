@@ -2,9 +2,6 @@ from operator import truediv
 from pickle import FALSE
 import requests
 from bs4 import BeautifulSoup
-import selenium
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from config import URL_BASE
 
 
@@ -15,24 +12,16 @@ def readHtml(totalPage, param):
     for page in range(totalPage):
         URL = URL_BASE
         print(URL)
+        print(page)
         request = requests.get(URL)
+        print(request.text)
         soup = BeautifulSoup(request.text, "html.parser")
+        print(soup)
 
-        mainMenuList = soup.find("div", "topWrap").find_all("ul","depth2")[1]
-        subMenuList = mainMenuList.find_all("li")
-        recruitmentNotice = subMenuList[1].find("a")
-        recruitmentNoticeTitle = recruitmentNotice['title']
-        print(recruitmentNotice)
-        print(recruitmentNoticeTitle)
-        if recruitmentNoticeTitle == "모집공고 페이지이동":
-            #엔터키 동작
-            driver.find_element_by_link_text('Send InMail').click()
-            recruitmentNotice.click()
-            return
-
-
-
-
+        findMenuList = soup.find("div", "topWrap").find_all("ul","depth2")[1]
+        menu2 = findMenuList.find_all("li")
+        findNoticeList = menu2[1]
+        print(findNoticeList)
 
         noticeTable = soup.find("div", {"class": "tableWrap"})
         noticeTbody = noticeTable.find("tbody")

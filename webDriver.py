@@ -2,26 +2,26 @@ import os
 import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
+
+from config import WEB_DRIVER_PATH
 # from config import conn
 # from SQL import sample
 
 #####한글깨짐 방지######
 os.environ["NLS_LANG"] = ".AL32UTF8"
 
-URL_BASE = "https://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008#"
 URL_PARAM = ""
 
 # db = conn.cursor()
 
 
-def scrape(URL):
+def openWebPage(url):
     while True:
-        driver = webdriver.Chrome(
-            'C:/Wooseong/web scraper/chromedriver')  # webdriver 경로
+        driver = webdriver.Chrome(WEB_DRIVER_PATH +'chromedriver.exe')  # webdriver 경로
         # 반응형 방지
         driver.set_window_size(1920, 1280)
         driver.implicitly_wait(3)
-        driver.get(URL)
+        driver.get(url)
         driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
         html = driver.page_source
