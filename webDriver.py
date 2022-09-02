@@ -1,10 +1,14 @@
+from http import client
 import os
+from pydoc import cli
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from oauth import BUOT
 
 from config import *
+from pymongo import MongoClient
+from pymongo.cursor import CursorType
 # from config import conn
 # from SQL import sample
 
@@ -26,6 +30,9 @@ def main():
         print("최근 공고가 없습니다.")
         driver.quit()
 
+def connectDataBase():
+    client = MongoClient(host=MONGODB_HOST, port=MONGODB_PORT)
+    print(client.list_database_names())
 
 def setDriverByUrl(url):
     driver = webdriver.Chrome(WEB_DRIVER_PATH +'chromedriver.exe')

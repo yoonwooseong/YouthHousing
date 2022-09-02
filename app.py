@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from webDriver import main
+from webDriver import main, connectDataBase
 from config import *
 import webbrowser
 
@@ -26,7 +26,8 @@ def inviation():
 @app.route("/admin/db")
 def updateDB():
     # Update문 작성 필요
-    
+    connectDataBase()
     return render_template("home.html")
 
-app.run(host="localhost")
+if __name__ == '__main__':
+    app.run(host="0.0.0.0")

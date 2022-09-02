@@ -7,6 +7,8 @@ URL_BASE = "https://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008"
 WEB_DRIVER_PATH = "C:/SIDE/chromeDirver/"
 
 # DB 설정
+MONGODB_HOST = "localhost"
+MONGODB_PORT = 27017
 # conn = pymysql.connect(host='ip', user='root', password='1111', db='', charset='utf8mb4', use_unicode=True)
 
 # Slack 초대 링크
