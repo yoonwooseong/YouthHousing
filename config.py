@@ -1,4 +1,4 @@
-import pymysql
+from oauth import DB_HOST
 
 # URL 설정
 URL_BASE = "https://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008"
@@ -7,9 +7,8 @@ URL_BASE = "https://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008"
 WEB_DRIVER_PATH = "C:/SIDE/chromeDirver/"
 
 # DB 설정
-MONGODB_HOST = "localhost"
+MONGODB_HOST = DB_HOST
 MONGODB_PORT = 27017
-# conn = pymysql.connect(host='ip', user='root', password='1111', db='', charset='utf8mb4', use_unicode=True)
 
 # Slack 초대 링크
 SLACK_LINK = "https://join.slack.com/t/youthhousinghq/shared_invite/zt-1fgpdx8q9-_VS~4yj1R~euf60hyP0Jxg"
