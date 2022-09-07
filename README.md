@@ -23,5 +23,14 @@
 
 ![시스템 구조도](img/SystemStructure.png)
 
+## 배포 방식
+
+ - `docker build -t yoonwooseong/youth_housing:태그 .`
+ - `docker push yoonwooseong/youth_housing:태그`
+ 
+ 배포 서버
+ - `docker pull yoonwooseong/youth_housing:태그`
+ - `docker run -d -p 0.0.0.0:5000:5000/tcp yoonwooseong/youth_housing:태그`
+
 ## 개발자
  - yoonwooseong
