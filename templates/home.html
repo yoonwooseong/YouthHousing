@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>역세권 청년주택 공고 알리미</title>
     <style>
         .contents {margin: 20px; padding-bottom: 20px;}
     </style>
-    <title>역세권 청년주택 공고 알리미</title>
 </head>
 <body>
     <div class="wrap" style="background:rgb(255, 255, 255, 0.5); border-radius: 15px;">
         <div class="contents">
             <h1 style="text-align: center; color: rgb(46, 42, 42); margin-top: 250px; margin-bottom: 25px;">역세권 청년주택 공고 알리미 📭</h1>
-
             <div class="info">
                 역세권 청년주택 최근 공고를 알 수 있어요
             </div>
-            <form action="/invitation" method="get" style="text-align: center;">
-                <button>Slack에서 알림 받기</button>
-            </form>
-            <!-- <form action="/admin/start" method="get" style="text-align: center;">
-                <button>알림이 시작</button>
-            </form>
-            <form action="/admin/stop" method="get" style="text-align: center;">
-                <button>알림이 중단</button>
-            </form> -->
+            <div class="btn" style="text-align: center;">
+                <a id="slackBtn" href='{{slack_link}}' target='_blank' >Slack에서 알림 받기</a>
+            </div>
         <div>
         <div class="footer">
             Slack에서 역세권 청년주택 알림받고 까먹지 않고 신청해요!
