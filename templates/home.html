@@ -3,23 +3,38 @@
 <head>
     <title>역세권 청년주택 공고 알리미</title>
     <style>
+        a {
+        text-decoration: none;
+        }
+        a:visited {color:black}
         .contents {margin: 20px; padding-bottom: 20px;}
+        .title {position: relative; text-align: center; margin-top: 250px; margin-bottom: 25px; padding-top: 20px; color: rgb(46, 42, 42);}
+        .bg {position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: -1; opacity: 0.5;}
+        .bg .bg_content {height: 100%; width: 100%; object-fit: cover;}
+        .btn{font-size: 20px; margin-top: 15px;}
+        .info{text-align: center; margin-top: 50px;}
     </style>
 </head>
 <body>
-    <div class="wrap" style="background:rgb(255, 255, 255, 0.5); border-radius: 15px;">
+    <div class="bg">
+        <video class="bg_content" autoplay muted>
+            <source src="/static/img/bg.webm" type="video/mp4">
+        </video>
+    </div>
+    <div class="wrap" style="background:rgb(255, 255, 255, 0.5); border-radius: 15px; margin:15%;">
         <div class="contents">
-            <h1 style="text-align: center; color: rgb(46, 42, 42); margin-top: 250px; margin-bottom: 25px;">역세권 청년주택 공고 알리미 📭</h1>
-            <div class="info">
-                역세권 청년주택 최근 공고를 알 수 있어요
+            <h1 class="title" style="text-align: center; color: rgb(46, 42, 42); margin-top: 250px; margin-bottom: 25px;">역세권 청년주택 공고 알리미 📭</h1>
+            
+            <div class="btn" style="text-align: center;">
+                <a id="slackBtn" href='{{slack_link}}' target='_blank'>⏰ Slack 알림 신청</a>
             </div>
             <div class="btn" style="text-align: center;">
-                <a id="slackBtn" href='{{slack_link}}' target='_blank' >Slack에서 알림 받기</a>
+                <a id="noticeBtn" href='{{youth_url}}' target='_blank'>📃 공고 확인</a>
+            </div>
+            <div class="info">
+                Slack 알림을 신청하면 앱을 설치하거나 슬랙채널에서 역세권 청년주택의 새로운 공고 알림을 받아 보실 수 있어요!
             </div>
         <div>
-        <div class="footer">
-            Slack에서 역세권 청년주택 알림받고 까먹지 않고 신청해요!
-        </div>
     </div>
 </body>
 </html>

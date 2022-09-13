@@ -9,7 +9,7 @@ state = "stop"
 
 @app.route("/")
 def home():
-    return render_template("home.html", slack_link = SLACK_LINK)
+    return render_template("home.html", slack_link = SLACK_LINK, youth_url = URL_BASE)
 
 # 알림 시작
 @app.route("/admin/start")
