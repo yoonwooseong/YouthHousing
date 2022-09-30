@@ -18,6 +18,9 @@ def getNumberOfSavedNotice(isSimple):
     global db
     if isSimple:
         result = db.notice_slim.find_one({"_id":1})
+
+        # 만약 없다면 신규로 재생성 로직 추가
+        
         return int(result['count']) 
     else:
         return

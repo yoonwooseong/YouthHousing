@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from main import main, stopScan
+from main import startScan, stopScan
 from config import *
 
 app = Flask(__name__)
@@ -17,8 +17,7 @@ def start():
     global state
     if state == "stop":
         state = "start"
-        # Background schedule로 변경 예정
-        main()
+        startScan()
         return render_template("complete.html", text = START_TEXT)
     else:
         return render_template("complete.html", text = ERROR_TEXT)

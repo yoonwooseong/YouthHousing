@@ -6,26 +6,26 @@ from config import *
 from selenium import webdriver
 from message import changeMsgFormat, sendAlarm
 from database import connectDataBase, updateNoticeSlim, getNumberOfSavedNotice
+from apscheduler.schedulers.background import BlockingScheduler
 
 ##### 한글깨짐 방지 소스 ######
 os.environ["NLS_LANG"] = ".AL32UTF8"
 
 global curNoticeNum
 global chromeDriver
-global scanSchedule
+global scheduler
 
-def main():
+def startScan():
     global curNoticeNum
     global chromeDriver
-    global scanSchedule
+    global scheduler
 
     connectDataBase()
-    #connectDriverByUrl(URL_BASE) # scan으로 이동
 
-    scanSchedule = schedule.every(10).days.do(scan)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    scheduler = BlockingScheduler(timezone='Asia/Seoul')
+    # scheduler.add_job(scan, 'replace_existing': True, 'interval', seconds=60*60*12, id="scan")
+    scheduler.add_job(scan, 'interval', seconds=5, id="scan")
+    scheduler.start()
     
 
 def connectDriverByUrl(url):
@@ -34,9 +34,9 @@ def connectDriverByUrl(url):
     # options = webdriver.ChromeOptions()
     # options.add_experimental_option("excludeSwitches", ["enable-logging"])
     chromeDriver = webdriver.Chrome(WEB_DRIVER_PATH +'chromedriver.exe')
+    chromeDriver.get(url)
     chromeDriver.set_window_size(1920, 1280) # 반응형 방지
     chromeDriver.implicitly_wait(3)
-    chromeDriver.get(url)
     chromeDriver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     return chromeDriver
 
@@ -95,7 +95,7 @@ def readPage(driver):
     return info
 
 def stopScan():
-    global scanSchedule
-
-    schedule.cancel_job(scanSchedule)
+    global scheduler
+    
+    scheduler.shutdown() 
     print("stop scan")
