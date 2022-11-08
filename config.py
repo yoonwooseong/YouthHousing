@@ -4,7 +4,8 @@ from oauth import DB_HOST
 URL_BASE = "https://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008"
 
 # webdriver 경로
-WEB_DRIVER_PATH = "C:/SIDE/chromeDirver/"
+WEB_DRIVER_PATH = "/usr/bin/chromedriver"                   # 운영
+# WEB_DRIVER_PATH = "C:/SIDE/YouthHousing/chromedriver.exe" # 로컬
 
 # DB 설정
 MONGODB_HOST = DB_HOST

@@ -6,7 +6,7 @@ from config import *
 from selenium import webdriver
 from message import changeMsgFormat, sendAlarm
 from database import connectDataBase, updateNoticeSlim, getNumberOfSavedNotice
-from apscheduler.schedulers.background import BlockingScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 
 ##### 한글깨짐 방지 소스 ######
 os.environ["NLS_LANG"] = ".AL32UTF8"
@@ -22,18 +22,20 @@ def startScan():
 
     connectDataBase()
 
-    scheduler = BlockingScheduler(timezone='Asia/Seoul')
-    # scheduler.add_job(scan, 'replace_existing': True, 'interval', seconds=60*60*12, id="scan")
-    scheduler.add_job(scan, 'interval', seconds=5, id="scan")
+    scheduler = BackgroundScheduler(timezone='Asia/Seoul')
+
+    #scheduler.add_job(scan, 'interval', seconds=30, id="scan") # 테스트 소스
+    scheduler.add_job(scan, 'cron', hour=9, id="scan")
     scheduler.start()
     
 
 def connectDriverByUrl(url):
     global chromeDriver
 
-    # options = webdriver.ChromeOptions()
-    # options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    chromeDriver = webdriver.Chrome(WEB_DRIVER_PATH +'chromedriver.exe')
+    options = webdriver.ChromeOptions()
+    options.add_argument("headless")
+
+    chromeDriver = webdriver.Chrome(WEB_DRIVER_PATH, chrome_options=options)
     chromeDriver.get(url)
     chromeDriver.set_window_size(1920, 1280) # 반응형 방지
     chromeDriver.implicitly_wait(3)
@@ -66,8 +68,9 @@ def checkUpdatedList(driver):
     currentTotalNumStr = driver.find_element_by_css_selector(TOTAL_NOTICE_NUMBER_CSS_PATH).get_attribute('innerHTML')
     currentTotalNum = int(currentTotalNumStr)
     curNoticeNum = currentTotalNum                      # DB에 저장할 갯수
-    prevDBNum = getNumberOfSavedNotice(True)                  # DB에 저장되어있는 갯수
-
+    print(curNoticeNum)
+    prevDBNum = getNumberOfSavedNotice(True)            # DB에 저장되어있는 갯수
+    print(prevDBNum)
 
     isUpdated = True if currentTotalNum > prevDBNum else False
     numOfUpdates = currentTotalNum - prevDBNum
