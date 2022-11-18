@@ -18,7 +18,7 @@ SLACK_LINK = "https://join.slack.com/t/youthhousinghq/shared_invite/zt-1fgpdx8q9
 TOTAL_NOTICE_NUMBER_CSS_PATH = "#schResult1 > strong"
 # 가장 최근 공고 css-select path
 NUM_CSS_PATH = '#boardList > tr:nth-child(1) > td:nth-child(1)'
-TYPE_CSS_PATH = '#boardList > tr:nth-child(1) > td:nth-child(2)'
+TYPE_CSS_PATH = '#boardList > tr:nth-child(1) > td:nth-child(2) > span'
 TITLE_CSS_PATH = '#boardList > tr:nth-child(1) > td.align_left > a'
 NOTICE_DATE_CSS_PATH = '#boardList > tr:nth-child(1) > td:nth-child(4)'
 REGISTER_DATE_CSS_PATH = '#boardList > tr:nth-child(1) > td:nth-child(5)'
