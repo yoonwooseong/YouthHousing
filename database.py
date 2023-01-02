@@ -21,10 +21,22 @@ def getNumberOfSavedNotice(isSimple):
 
         # 만약 없다면 신규로 재생성 로직 추가
         
-        return int(result['count']) 
+        return int(result['count'])
     else:
         return
 
 def updateNotice():
     # 공고 전체 내용 저장
     return
+
+def healthCheck():
+    try:
+        connectDataBase()
+        getNumberOfSavedNotice(True)
+        db_state = "complete"
+
+    except:
+        db_state = "error"
+
+    print("DB State : " + db_state)
+    return db_state

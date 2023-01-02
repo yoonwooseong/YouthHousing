@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from main import startScan, stopScan
+from database import healthCheck
 from config import *
 
 app = Flask(__name__)
@@ -11,6 +12,18 @@ state = "stop"
 def home():
     return render_template("home.html", slack_link = SLACK_LINK, youth_url = URL_BASE)
 
+# DB 상태 확인
+@app.route("/admin/healthCheck")
+def checkState():
+    db_state = healthCheck()
+
+    if db_state == "complete":
+        return render_template("home.html", slack_link = SLACK_LINK, youth_url = URL_BASE)
+    elif db_state == "error":
+        return render_template("complete.html", text = DB_ERROR_TEXT)
+    else:
+        return render_template("complete.html", text = ERROR_TEXT)
+        
 # 알림 시작
 @app.route("/admin/start")
 def start():

@@ -27,3 +27,4 @@ DEPARTMENT_CSS_PATH = '#boardList > tr:nth-child(1) > td:nth-child(6)'
 START_TEXT = "알람 설정이 완료되었습니다."
 STOP_TEXT = "알람을 삭제하였습니다."
 ERROR_TEXT = "설정을 실패하였습니다. 네트워크를 확인해 주세요."
+DB_ERROR_TEXT = "데이터베이스 상태를 확인해 주세요."
