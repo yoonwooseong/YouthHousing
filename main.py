@@ -25,7 +25,7 @@ def startScan():
     scheduler = BackgroundScheduler(timezone='Asia/Seoul')
 
     #scheduler.add_job(scan, 'interval', seconds=30, id="scan") # 테스트 소스
-    scheduler.add_job(scan, 'cron', hour=11, id="scan")
+    scheduler.add_job(scan, 'cron', hour=14, id="scan")
     scheduler.start()
     
 
