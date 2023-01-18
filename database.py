@@ -10,18 +10,15 @@ def connectDataBase():
     mongoClient = MongoClient(host=MONGODB_HOST, port=MONGODB_PORT)
     db = mongoClient['youth_housing']
 
-def updateNoticeSlim(count):
+def updateNoticeSlim(count, date):
     global db
-    db.notice_slim.update_one({"_id":1}, {"$set":{"count":count}})
+    db.notice_slim.update_one({"_id":1}, {"$set":{"count":count, "date":date}})
 
-def getNumberOfSavedNotice(isSimple):
+def getSavedNotice(isSimple):
     global db
     if isSimple:
         result = db.notice_slim.find_one({"_id":1})
-
-        # 만약 없다면 신규로 재생성 로직 추가
-        
-        return int(result['count'])
+        return int(result['count']), result['date']
     else:
         return
 
@@ -32,7 +29,7 @@ def updateNotice():
 def healthCheck():
     try:
         connectDataBase()
-        getNumberOfSavedNotice(True)
+        getSavedNotice(True)
         db_state = "complete"
 
     except:

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from main import startScan, stopScan
 from database import healthCheck
 from config import *
+from message import sendNotice
 
 app = Flask(__name__)
 
@@ -11,6 +12,25 @@ state = "stop"
 @app.route("/")
 def home():
     return render_template("home.html", slack_link = SLACK_LINK, youth_url = URL_BASE)
+
+# 관리자 페이지
+@app.route("/admin")
+def goAdmin():
+    pw = request.args.get('pw', default = '', type = str)
+    if(pw == "1111"):
+        return render_template("admin.html")
+    else:
+        return render_template("home.html", slack_link = SLACK_LINK, youth_url = URL_BASE)
+
+# 공지사항 알림
+@app.route('/admin/notice', methods=['GET','POST'])
+def requestNotice():
+    if request.method == 'POST':
+        message = request.form['notice_content']
+        message = str(message)
+        print(message)
+        sendNotice(message)
+    return render_template("complete.html", text = SEND_TEXT)
 
 # DB 상태 확인
 @app.route("/admin/healthCheck")

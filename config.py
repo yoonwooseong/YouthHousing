@@ -1,18 +1,18 @@
 from oauth import DB_HOST
 
 # URL 설정
-URL_BASE = "https://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008"
+URL_BASE = "http://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008"
 
 # webdriver 경로
 WEB_DRIVER_PATH = "/usr/bin/chromedriver.exe"               # 운영
-# WEB_DRIVER_PATH = "C:/SIDE/YouthHousing/chromedriver.exe" # 로컬
+#WEB_DRIVER_PATH = "C:/SIDE/YouthHousing/driver/chromedriver.exe" # 로컬
 
 # DB 설정
 MONGODB_HOST = DB_HOST
 MONGODB_PORT = 27017
 
 # Slack 초대 링크
-SLACK_LINK = "https://join.slack.com/t/youthhousinghq/shared_invite/zt-1fgpdx8q9-_VS~4yj1R~euf60hyP0Jxg"
+SLACK_LINK = "http://join.slack.com/t/youthhousinghq/shared_invite/zt-1fgpdx8q9-_VS~4yj1R~euf60hyP0Jxg"
 
 # 전체 공고 갯수
 TOTAL_NOTICE_NUMBER_CSS_PATH = "#schResult1 > strong"
@@ -28,3 +28,4 @@ START_TEXT = "알람 설정이 완료되었습니다."
 STOP_TEXT = "알람을 삭제하였습니다."
 ERROR_TEXT = "설정을 실패하였습니다. 네트워크를 확인해 주세요."
 DB_ERROR_TEXT = "데이터베이스 상태를 확인해 주세요."
+SEND_TEXT = "공지사항을 전송하였습니다."

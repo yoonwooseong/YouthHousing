@@ -13,6 +13,7 @@ airbnbSQL.cpython-39.pyc
 config.cpython-39.pyc
 mailAccount.py
 oauth.py
+chromedriver.exe
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

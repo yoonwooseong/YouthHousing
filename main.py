@@ -4,19 +4,21 @@ import schedule
 import time
 from config import *
 from selenium import webdriver
-from message import changeMsgFormat, sendAlarm
-from database import connectDataBase, updateNoticeSlim, getNumberOfSavedNotice
+from message import writeMessage, sendAlarm
+from database import connectDataBase, updateNoticeSlim, getSavedNotice
 from apscheduler.schedulers.background import BackgroundScheduler
 
 ##### 한글깨짐 방지 소스 ######
 os.environ["NLS_LANG"] = ".AL32UTF8"
 
 global curNoticeNum
+global curNoticeDate
 global chromeDriver
 global scheduler
 
 def startScan():
     global curNoticeNum
+    global curNoticeDate
     global chromeDriver
     global scheduler
 
@@ -53,9 +55,10 @@ def scan():
 
     if isUpdated:
         info = readPage(chromeDriver)
-        message = changeMsgFormat(info, numOfUpdates)
+        message = writeMessage(info, numOfUpdates)
+        
         sendAlarm(message)
-        updateNoticeSlim(curNoticeNum)
+        updateNoticeSlim(curNoticeNum, curNoticeDate)
 
     else:
         print("최근 공고가 없습니다.")
@@ -64,17 +67,24 @@ def scan():
 # 조건 : 공고문이 삭제되지 않는다는 것을 가정
 def checkUpdatedList(driver):
     global curNoticeNum
+    global curNoticeDate
 
     currentTotalNumStr = driver.find_element_by_css_selector(TOTAL_NOTICE_NUMBER_CSS_PATH).get_attribute('innerHTML')
     currentTotalNum = int(currentTotalNumStr)
-    curNoticeNum = currentTotalNum                      # DB에 저장할 갯수
-    print(curNoticeNum)
-    prevDBNum = getNumberOfSavedNotice(True)            # DB에 저장되어있는 갯수
-    print(prevDBNum)
 
-    isUpdated = True if currentTotalNum > prevDBNum else False
+    # DB에 저장할 갯수, 날짜
+    curNoticeNum = currentTotalNum
+    curNoticeDate = driver.find_element_by_css_selector(NOTICE_DATE_CSS_PATH).get_attribute('innerHTML')
+
+    # DB에 저장되어있는 갯수, 날짜
+    prevDBNum, prevDBDate = getSavedNotice(True)          
+    
+    # 업데이트 여부, 갯수
+    isUpdated = True if (currentTotalNum > prevDBNum or curNoticeDate != prevDBDate) else False
     numOfUpdates = currentTotalNum - prevDBNum
     
+    print(curNoticeNum, curNoticeDate)
+    print(prevDBNum, prevDBDate)
     return isUpdated, numOfUpdates
 
 def readPage(driver):
