@@ -8,7 +8,7 @@ def sendNotice(message):
     text = message
 
     #Post 메소드로 전송, headers에 Bearer 인증 방법 사용
-    requests.post("http://slack.com/api/chat.postMessage", headers={"Authorization": "Bearer "+token}, data={"channel":channel, "text":text})
+    requests.post("https://slack.com/api/chat.postMessage", headers={"Authorization": "Bearer "+token}, data={"channel":channel, "text":text})
 
 def sendAlarm(message):
     token = BUOT
@@ -16,7 +16,7 @@ def sendAlarm(message):
     text = message
 
     #Post 메소드로 전송, headers에 Bearer 인증 방법 사용
-    requests.post("http://slack.com/api/chat.postMessage", headers={"Authorization": "Bearer "+token}, data={"channel":channel, "text":text})
+    requests.post("https://slack.com/api/chat.postMessage", headers={"Authorization": "Bearer "+token}, data={"channel":channel, "text":text})
 
 def writeMessage(info, numOfUpdates):
     message = (
