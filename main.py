@@ -61,7 +61,7 @@ def scan():
         updateNoticeSlim(curNoticeNum, curNoticeDate)
 
     else:
-        print("최근 공고가 없습니다.")
+        print("No announcements added")
         chromeDriver.quit()
 
 # 조건 : 공고문이 삭제되지 않는다는 것을 가정
