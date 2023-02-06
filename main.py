@@ -35,7 +35,10 @@ def connectDriverByUrl(url):
     global chromeDriver
 
     options = webdriver.ChromeOptions()
-    options.add_argument("headless")
+    options.add_argument("--headless")
+    # linux 환경에서 필요한 option
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
 
     chromeDriver = webdriver.Chrome(WEB_DRIVER_PATH, chrome_options=options)
     chromeDriver.get(url)
