@@ -3,6 +3,7 @@ from main import startScan, stopScan
 from database import healthCheck
 from config import *
 from message import sendNotice
+from oauth import ADMIN_PW
 
 app = Flask(__name__)
 
@@ -17,7 +18,7 @@ def home():
 @app.route("/admin")
 def goAdmin():
     pw = request.args.get('pw', default = '', type = str)
-    if(pw == "1111"):
+    if(pw == ADMIN_PW):
         return render_template("admin.html")
     else:
         return render_template("home.html", slack_link = SLACK_LINK, youth_url = URL_BASE)
