@@ -1,6 +1,6 @@
 import requests
-from oauth import BUOT
-from config import *
+from svc.common.oauth import BUOT
+from svc.common.config import *
 
 def sendNotice(message):
     token = BUOT

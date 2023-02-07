@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect
-from main import startScan, stopScan
-from database import healthCheck
-from config import *
-from message import sendNotice
-from oauth import ADMIN_PW
+from svc.main import startScan, stopScan
+from svc.common.database import healthCheck
+from svc.common.config import *
+from svc.message import sendNotice
+from svc.common.oauth import ADMIN_PW
 
 app = Flask(__name__)
 

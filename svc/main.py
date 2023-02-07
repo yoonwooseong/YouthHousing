@@ -2,10 +2,10 @@ from ast import While
 import os
 import schedule
 import time
-from config import *
+from svc.common.config import *
 from selenium import webdriver
-from message import writeMessage, sendAlarm
-from database import connectDataBase, updateNoticeSlim, getSavedNotice
+from svc.message import writeMessage, sendAlarm
+from svc.common.database import connectDataBase, updateNoticeSlim, getSavedNotice
 from apscheduler.schedulers.background import BackgroundScheduler
 
 ##### 한글깨짐 방지 소스 ######

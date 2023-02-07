@@ -1,5 +1,5 @@
 from pdb import post_mortem
-from config import *
+from svc.common.config import *
 from pymongo import MongoClient
 from pymongo.cursor import CursorType
 

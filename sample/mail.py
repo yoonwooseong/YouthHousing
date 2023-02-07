@@ -1,6 +1,6 @@
 import smtplib
 from email.mime.text import MIMEText
-from oauth import EMAIL, PASSWORD
+from svc.common.oauth import EMAIL, PASSWORD
 
 
 def checkEmail():

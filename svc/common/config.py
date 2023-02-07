@@ -1,4 +1,4 @@
-from oauth import DB_HOST
+from svc.common.oauth import DB_HOST
 
 # URL 설정
 URL_BASE = "http://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008"

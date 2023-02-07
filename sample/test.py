@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import selenium
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from config import URL_BASE
+from svc.common.config import URL_BASE
 
 
 def readHtml(totalPage, param):
