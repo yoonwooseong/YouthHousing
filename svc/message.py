@@ -4,7 +4,7 @@ from svc.common.config import *
 
 def sendNotice(message):
     token = BUOT
-    channel = "#공지사항"
+    channel = "#공고알림"
     text = message
 
     #Post 메소드로 전송, headers에 Bearer 인증 방법 사용
@@ -12,7 +12,7 @@ def sendNotice(message):
 
 def sendAlarm(message):
     token = BUOT
-    channel = "#공고-알림"
+    channel = "#공지사항"
     text = message
 
     #Post 메소드로 전송, headers에 Bearer 인증 방법 사용
