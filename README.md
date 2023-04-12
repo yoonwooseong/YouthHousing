@@ -1,6 +1,6 @@
 # 역세권 청년주택 알리미, YouthHousing
 
-실시간으로 올라오는 ⏰<a href="http://house.youthalarm.kro.kr:5000/" target="_blank">공고 알림</a> 받으러 가기
+실시간으로 올라오는 ⏰<a href="http://side.wsyoon.kro.kr:5000/" target="_blank">공고 알림</a> 받으러 가기
 
 ## 기능 구현
  - 역세권 청년주택 공고를 스케줄러를 통해 주기적으로 크롤링 실행
